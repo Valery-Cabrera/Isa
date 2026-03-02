@@ -56,6 +56,7 @@ export const EVENT = {
   /** Ubicaci\u00f3n */
   location: "Conjunto residencial San Diego",
   locationNote: "Salón social",
+  address: "Calle 166 No. 55D - 15",
   /** Google Maps URL (actualizar cuando se confirme el lugar) */
   googleMapsUrl: "https://maps.app.goo.gl/b4T9rkZqU21Rbv9h8",
 }

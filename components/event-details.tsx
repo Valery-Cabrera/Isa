@@ -42,11 +42,16 @@ export function EventDetails() {
           Ubicacion
         </h3>
         <p className="text-base md:text-lg" style={{ color: COLORS.neonLilac }}>
-          {EVENT.location}
+          {EVENT.address}
         </p>
-        <p className="text-sm italic" style={{ color: 'rgba(167,139,250,0.7)' }}>
-          {EVENT.locationNote}
-        </p>
+        <div style={{gap: "4px"}}>
+          <p className="text-sm italic" style={{ color: 'rgba(167,139,250,0.7)' }}>
+            {EVENT.location}
+          </p>
+          <p className="text-sm italic" style={{ color: 'rgba(167,139,250,0.7)' }}>
+            {EVENT.locationNote}
+          </p>
+        </div>
         <a
           href={EVENT.googleMapsUrl}
           target="_blank"
