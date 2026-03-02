@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Great_Vibes } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { AudioProvider } from '@/components/audio-context';
 
 const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
 const greatVibes = Great_Vibes({ weight: '400', subsets: ["latin"], variable: '--font-script' });
@@ -19,8 +19,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${playfair.variable} ${greatVibes.variable} font-sans antialiased`}>
-        {children}
-        <Analytics />
+        <AudioProvider>
+          {children}
+        </AudioProvider>
       </body>
     </html>
   )
