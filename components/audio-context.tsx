@@ -12,27 +12,30 @@ const AudioContext = createContext<AudioContextType | null>(null)
 export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
     const audioRef = useRef<HTMLAudioElement | null>(null)
     const [isPlaying, setIsPlaying] = useState(false)
-    const [hasInteracted, setHasInteracted] = useState(false)
+    const hasStartedRef = useRef(false)
 
     useEffect(() => {
-        const enableAudio = async () => {
-            if (hasInteracted) return
+        const startAudio = () => {
+            if (!audioRef.current || hasStartedRef.current) return
 
-            try {
-                await audioRef.current?.play()
-                setIsPlaying(true)
-                setHasInteracted(true)
-            } catch (err) {
-                console.log("Autoplay bloqueado")
-            }
+            hasStartedRef.current = true
+
+            // 🔥 IMPORTANTE: play directamente dentro del evento
+            audioRef.current.play()
+                .then(() => setIsPlaying(true))
+                .catch(() => {
+                    hasStartedRef.current = false
+                })
         }
 
-        window.addEventListener("pointerdown", enableAudio, { once: true })
+        document.addEventListener("touchend", startAudio, { passive: true })
+        document.addEventListener("click", startAudio)
 
         return () => {
-            window.removeEventListener("pointerdown", enableAudio)
+            document.removeEventListener("touchend", startAudio)
+            document.removeEventListener("click", startAudio)
         }
-    }, [hasInteracted])
+    }, [])
 
     const toggle = async () => {
         if (!audioRef.current) return
@@ -50,7 +53,12 @@ export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
         <AudioContext.Provider value={{ toggle, isPlaying }}>
             {children}
 
-            <audio ref={audioRef} loop autoPlay>
+            <audio
+                ref={audioRef}
+                loop
+                playsInline   // 🔥 obligatorio para iOS
+                preload="auto"
+            >
                 <source src="/music.mp3" type="audio/mpeg" />
             </audio>
 
