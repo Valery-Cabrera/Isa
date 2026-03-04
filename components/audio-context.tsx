@@ -11,25 +11,34 @@ const AudioContext = createContext<AudioContextType | null>(null)
 
 export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
     const audioRef = useRef<HTMLAudioElement | null>(null)
-    const [isPlaying, setIsPlaying] = useState(true)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [hasInteracted, setHasInteracted] = useState(false)
 
     useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.play()
-                .then(() => {
-                    setIsPlaying(true)
-                })
-                .catch(() => {
-                    console.log("Autoplay bloqueado")
-                })
-        }
-    }, [])
+        const enableAudio = async () => {
+            if (hasInteracted) return
 
-    const toggle = () => {
+            try {
+                await audioRef.current?.play()
+                setIsPlaying(true)
+                setHasInteracted(true)
+            } catch (err) {
+                console.log("Autoplay bloqueado")
+            }
+        }
+
+        window.addEventListener("pointerdown", enableAudio, { once: true })
+
+        return () => {
+            window.removeEventListener("pointerdown", enableAudio)
+        }
+    }, [hasInteracted])
+
+    const toggle = async () => {
         if (!audioRef.current) return
 
         if (audioRef.current.paused) {
-            audioRef.current.play()
+            await audioRef.current.play()
             setIsPlaying(true)
         } else {
             audioRef.current.pause()
