@@ -67,7 +67,8 @@ export const GUEST_LIST: GuestEntry[] = [
   { keys: ["katheymauricio"], displayNames: ["Kathe", "Mauricio"] },
   { keys: ["katheyluz"], displayNames: ["Kathe", "Luz"] },
   { keys: ["nevis"], displayNames: ["Nevis"] },
-  { keys: ["betto"], displayNames: ["betto"] }
+  { keys: ["betto"], displayNames: ["betto"] },
+  { keys: ["federico"], displayNames: ["fede"] }
 
 ]
 
