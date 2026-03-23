@@ -67,8 +67,17 @@ export const GUEST_LIST: GuestEntry[] = [
   { keys: ["katheymauricio"], displayNames: ["Kathe", "Mauricio"] },
   { keys: ["katheyluz"], displayNames: ["Kathe", "Luz"] },
   { keys: ["nevis"], displayNames: ["Nevis"] },
-  { keys: ["betto"], displayNames: ["betto"] },
-  { keys: ["federico"], displayNames: ["fede"] }
+  { keys: ["betto"], displayNames: ["Betto"] },
+  { keys: ["federico"], displayNames: ["Fede"] },
+  { keys: ["gerson"], displayNames: ["Gerson"] },
+  { keys: ["gabrielapardo"], displayNames: ["Gaby"] },
+  { keys: ["isabellarivero"], displayNames: ["Isa"] },
+  { keys: ["sua"], displayNames: ["Sua", "Mariana", "Desde el otro lado del mundo!"] },
+  { keys: ["mabel"], displayNames: ["Bladi", "Mabel", "Sarita", "Desde el otro lado del mundo!"] }
+
+
+
+
 
 ]
 
