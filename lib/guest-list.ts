@@ -76,7 +76,11 @@ export const GUEST_LIST: GuestEntry[] = [
   { keys: ["mabel"], displayNames: ["Bladi", "Mabel", "Sarita", "Desde el otro lado del mundo!"] },
   { keys: ["anaaristizabal"], displayNames: ["Anita"] },
   { keys: ["anavictoria"], displayNames: ["Vic"] },
-  { keys: ["isayponcho"], displayNames: ["Isa", "Poncho", "Desde el otro lado del mundo!"]}
+  { keys: ["isayponcho"], displayNames: ["Isa", "Poncho", "Desde el otro lado del mundo!"]},
+  { keys: ["lina"], displayNames: ["Lina"] },
+  { keys: ["saddy"], displayNames: ["Andrés", "Saddy"] }
+
+
 
 
 ]
